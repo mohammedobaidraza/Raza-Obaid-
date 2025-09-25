@@ -1,3 +1,75 @@
+/* ========== NAV DRAWER ========== */
+(function(){
+  function ready(fn){ document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', fn) : fn(); }
+
+  ready(function(){
+    const btn = document.querySelector('.hamburger');
+    const drawer = document.getElementById('primary-drawer');
+    const backdrop = document.querySelector('.nav-backdrop');
+    if (!btn || !drawer || !backdrop) return;
+
+    // Focusable elements selector
+    const FOCUS = 'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    let firstFocus, lastFocus;
+
+    function setAria(open){
+      btn.setAttribute('aria-expanded', String(open));
+      drawer.setAttribute('aria-hidden', String(!open));
+      document.body.classList.toggle('nav-open', open);
+    }
+
+    function openDrawer(){
+      drawer.classList.add('open');
+      backdrop.hidden = false;
+      requestAnimationFrame(()=>backdrop.classList.add('show'));
+      btn.classList.add('is-open');
+      setAria(true);
+
+      const focusables = drawer.querySelectorAll(FOCUS);
+      firstFocus = focusables[0]; lastFocus = focusables[focusables.length - 1];
+      firstFocus && firstFocus.focus();
+      document.addEventListener('keydown', onKeyDown);
+      document.addEventListener('click', onOutside, true);
+    }
+
+    function closeDrawer(){
+      drawer.classList.remove('open');
+      backdrop.classList.remove('show');
+      btn.classList.remove('is-open');
+      setAria(false);
+      setTimeout(()=>{ backdrop.hidden = true; }, 180);
+      btn.focus();
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('click', onOutside, true);
+    }
+
+    function onKeyDown(e){
+      if (e.key === 'Escape') { e.preventDefault(); closeDrawer(); }
+      if (e.key === 'Tab' && drawer.classList.contains('open')){
+        const focusables = drawer.querySelectorAll(FOCUS);
+        if (!focusables.length) return;
+        const first = focusables[0], last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+      }
+    }
+
+    function onOutside(e){
+      if (drawer.contains(e.target) || btn.contains(e.target)) return;
+      closeDrawer();
+    }
+
+    btn.addEventListener('click', (e)=>{ e.preventDefault(); drawer.classList.contains('open') ? closeDrawer() : openDrawer(); }, {passive:false});
+    btn.addEventListener('touchstart', ()=>{ drawer.classList.contains('open') ? closeDrawer() : openDrawer(); }, {passive:true});
+    backdrop.addEventListener('click', closeDrawer);
+
+    // Close drawer when clicking a link
+    drawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', closeDrawer);
+      a.addEventListener('touchstart', closeDrawer, {passive:true});
+    });
+  });
+})();
 /* -----------------------------
    NAV TOGGLE (runs first)
 ------------------------------*/

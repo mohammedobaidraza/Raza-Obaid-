@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Obaid Raza — Portfolio</title>
+
+  <!-- Fallback display serif similar to The Queen -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="bg"></canvas>
+
+
+<<header class="site-header">
+  <a href="#top" class="brand brand-img" aria-label="Home">
+    <img src="assets/avatar.png.png" alt="Mohammed Obaid Raza" />
+  </a>
+  <nav class="nav">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact" class="btn">Contact</a>
+  </nav>
+</header>
+
+
+
+  <main id="top" class="main">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="kicker">RAZA</span>
+        <h1 class="display">OBAID</h1>
+        <p class="tagline">Ai • Security • Software</p>
+        <div class="cta">
+          <a class="btn" href="#projects">See Work</a>
+          <a class="btn ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <figure class="hero-portrait">
+        <img src="assets/portrait.jpg" alt="Portrait of Mohammed Obaid Raza" />
+      </figure>
+    </section>
+
+    <section id="about" class="section about">
+      <div class="about-grid">
+        <div>
+          
+            <h2>About</h2>
+      <p>I’m Obaid Raza, a builder at heart. My journey began with solving problems—whether it was keeping Loyola University’s IT systems running or competing in hackathons and CTFs where every second mattered.</p>
+
+      <p>Along the way, I found my passion at the crossroads of <strong>AI, cybersecurity, and product development</strong>.</p>
+
+      <p>I’ve built things that learn—like transformer-based NLP pipelines and GAN-powered chatbots. I’ve also built things that defend—intrusion detection systems tuned with Snort, Wireshark, and ELK that make networks smarter and safer.</p>
+
+      <p>For me, technology isn’t just about code it’s about creating systems that people can trust and rely on.</p>
+
+      <p>Outside of projects, I thrive in communities. From contributing to Google Developer Groups to collaborating in Loyola’s AI Club, or trading insights at Y Combinator Startup School. I believe the best ideas grow when shared.</p>
+
+      <p>My philosophy is simple: <em>build what matters, and build it securely</em>. I aim to push the boundaries of AI while ensuring the systems we create are resilient, ethical, and human-centered.</p>
+
+      <p>Right now, I’m seeking opportunities to join a forward-thinking team where I can <strong>design, secure, and scale technology</strong> that makes a real impact.</p>
+    
+        </div>
+        <ul class="facts">
+          <li>Master’s in CS (Loyola University Chicago)</li>
+          <li>Ai/ML • Cybersecurity • Full‑stack</li>
+          <li>Based in Chicago, IL</li>
+          <li>YC startup School</li>
+          <li>GDG Member</li>
+          <li>Opensource Contributor</li>
+          <li>Ex‑Google</li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- Projects moved below About and rebuilt as a product-style search UI -->
+    <section id="projects" class="section projects">
+      <div class="projects-header">
+        <div>
+          <h2>Projects</h2>
+          <p class="muted">Browse by category or search by keywords and tech.</p>
+        </div>
+        <div class="controls">
+          <input id="searchInput" type="search" placeholder="Search projects, tech, or keywords…" aria-label="Search projects" />
+          <div class="chips" id="categoryChips">
+            <!-- Chips populated via JS -->
+          </div>
+          <div class="filters">
+            <label><input type="checkbox" class="type-filter" value="app" checked> App</label>
+            <label><input type="checkbox" class="type-filter" value="research" checked> Research</label>
+            <label><input type="checkbox" class="type-filter" value="security" checked> Security</label>
+            <label><input type="checkbox" class="type-filter" value="data" checked> Data</label>
+          </div>
+        </div>
+      </div>
+
+      <div id="projectsGrid" class="cards"></div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <h2>Contact</h2>
+      <p>Open to roles and collaborations. Let’s talk.</p>
+      <a class="btn" href="mailto:mohammedobaidraza@gmail.com">Email Me</a>
+      <a class="btn" href="https://github.com/mohammedobaidraza">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/obaidraza">LinkedIn</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">© <span id="year"></span> Mohammed Obaid Raza</footer>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+  <script src="main.js"></script>
+  <script src="projects.js"></script>
+</body>
+</html>

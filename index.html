@@ -9,28 +9,49 @@
 </head>
 <body>
   <canvas id="bg"></canvas>
-  <header class="site-header">
-    <a href="#top" class="brand brand-img" aria-label="Home">
-      <img src="assets/avatar.png.png" alt="Mohammed Obaid Raza" />
-    </a>
-    <button class="nav-toggle" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
-      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-    </button>
-    <nav id="primary-nav" class="nav">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-      <a class="btn-code" href="https://drive.google.com/file/d/1qHZSid_jdSTqHA6IjOPuhIbrnhJQ4Bwf/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
-      <a class="btn-code" href="https://linktr.ee/mohammedobaidraza" target="_blank" rel="noopener">Linktree</a>
-    </nav>
-  </header>
+<!-- HEADER -->
+<header class="site-header">
+  <a href="#top" class="brand brand-img" aria-label="Home">
+    <img src="assets/avatar.png" alt="Mohammed Obaid Raza" />
+  </a>
+
+  <!-- Desktop inline nav -->
+  <nav class="nav-desktop">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a class="btn-code" href="https://drive.google.com/file/d/1qHZSid_jdSTqHA6IjOPuhIbrnhJQ4Bwf/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+    <a class="btn-code" href="https://linktr.ee/mohammedobaidraza" target="_blank" rel="noopener">Linktree</a>
+  </nav>
+
+  <!-- Mobile hamburger -->
+  <button class="hamburger" aria-label="Open menu" aria-controls="primary-drawer" aria-expanded="false">
+    <span class="bun top"></span>
+    <span class="patty"></span>
+    <span class="bun bottom"></span>
+  </button>
+</header>
+
+<!-- Drawer + Backdrop (mobile) -->
+<div class="nav-backdrop" data-close-drawer hidden></div>
+<nav id="primary-drawer" class="nav-drawer" aria-hidden="true">
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li class="divider"></li>
+    <li><a class="btn-code" href="https://drive.google.com/file/d/1qHZSid_jdSTqHA6IjOPuhIbrnhJQ4Bwf/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
+    <li><a class="btn-code" href="https://linktr.ee/mohammedobaidraza" target="_blank" rel="noopener">Linktree</a></li>
+  </ul>
+</nav>
+
 
   <main id="top" class="main">
     <section class="hero">
       <div class="hero-copy">
         <span class="kicker">RAZA</span>
         <h1 class="display">OBAID</h1>
-        <p class="tagline">AI • Security • Software</p>
+        <p class="tagline">Ai • Security • Software</p>
         <div class="cta">
           <a class="btn" href="#projects">See Work</a>
           <a class="btn ghost" href="#contact">Get in touch</a>
@@ -45,13 +66,22 @@
       <div class="about-grid">
         <div>
           <h2>About</h2>
-          <p>I’m Obaid Raza, a builder at heart. I work at the intersection of <strong>AI, security, and software</strong>.</p>
-          <p>My philosophy is simple: <em>build what matters, and build it securely</em>.</p>
+          <p>I’m Obaid Raza, a builder at heart. My journey began with solving problems—whether it was keeping Loyola University’s IT systems running or competing in hackathons and CTFs where every second mattered.</p>
+          <p>Along the way, I found my passion at the crossroads of <strong>AI, cybersecurity, and product development</strong>.</p>
+          <p>I’ve built things that learn—like transformer-based NLP pipelines and GAN-powered chatbots. I’ve also built things that defend—intrusion detection systems tuned with Snort, Wireshark, and ELK that make networks smarter and safer.</p>
+          <p>For me, technology isn’t just about code; it’s about creating systems that people can trust and rely on.</p>
+          <p>Outside of projects, I thrive in communities. From contributing to Google Developer Groups to collaborating in Loyola’s AI Club, or trading insights at Y Combinator Startup School. I believe the best ideas grow when shared.</p>
+          <p>My philosophy is simple: <em>build what matters, and build it securely</em>. I aim to push the boundaries of AI while ensuring the systems we create are resilient, ethical, and human-centered.</p>
+          <p>Right now, I’m seeking opportunities to join a forward-thinking team where I can <strong>design, secure, and scale technology</strong> that makes a real impact.</p>
         </div>
         <ul class="facts">
           <li>Master’s in CS (Loyola University Chicago)</li>
-          <li>AI/ML • Cybersecurity • Full‑stack</li>
+          <li>AI/ML • Cybersecurity • Full-stack</li>
           <li>Based in Chicago, IL</li>
+          <li>YC Startup School</li>
+          <li>GDG Member</li>
+          <li>Open-source Contributor</li>
+          <li>Ex-Google</li>
         </ul>
       </div>
     </section>

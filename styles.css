@@ -89,3 +89,113 @@ body.nav-open{overflow:hidden}
   .cards{grid-template-columns:1fr}
   .about .about-grid{grid-template-columns:1fr}
 }
+
+
+/* === NEW NAV: layout tiers === */
+.site-header{
+  position:fixed; inset:0 0 auto 0;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px clamp(16px,4vw,40px);
+  background:linear-gradient(to bottom, rgba(14,14,16,.85), rgba(14,14,16,0));
+  backdrop-filter: blur(6px);
+  z-index:100;
+  border-bottom:1px solid transparent;
+}
+.nav-desktop{ display:flex; align-items:center; gap:16px; }
+.nav-desktop a{ color:var(--ink-muted); text-decoration:none; font-size:.95rem; }
+.nav-desktop .btn-code{ padding:8px 14px; }
+
+/* Avatar pill (unchanged-ish) */
+.brand.brand-img{ width:48px; height:48px; border-radius:9999px; overflow:hidden;
+  border:1px solid var(--line); background:#0f0f12; box-shadow:0 6px 18px rgba(0,0,0,.35); }
+.brand.brand-img img{ width:100%; height:100%; object-fit:cover; filter:grayscale(100%) contrast(105%); display:block; }
+
+/* Hide desktop nav on small screens */
+@media (max-width: 900px){
+  .nav-desktop{ display:none; }
+}
+
+/* === Hamburger button === */
+.hamburger{
+  display:none;            /* desktop hidden */
+  width:44px; height:44px; border-radius:12px;
+  background:#111215; border:1px solid var(--line);
+  position:relative; z-index:110; cursor:pointer;
+  align-items:center; justify-content:center;
+}
+.hamburger .bun, .hamburger .patty{
+  position:absolute; left:50%; width:22px; height:2px; background:var(--ink);
+  transform:translateX(-50%); transition: transform .22s ease, opacity .2s ease, width .2s ease;
+  border-radius:2px;
+}
+.hamburger .top{ top:14px; }
+.hamburger .patty{ top:50%; transform:translate(-50%, -50%); width:18px; opacity:.9; }
+.hamburger .bottom{ bottom:14px; }
+
+/* Morph to "X" */
+.hamburger.is-open .top{ transform:translateX(-50%) translateY(8px) rotate(45deg); }
+.hamburger.is-open .patty{ opacity:0; width:0; }
+.hamburger.is-open .bottom{ transform:translateX(-50%) translateY(-8px) rotate(-45deg); }
+
+/* Show hamburger on small screens */
+@media (max-width: 900px){
+  .hamburger{ display:flex; }
+}
+
+/* === Drawer + backdrop === */
+.nav-backdrop{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.35);
+  backdrop-filter: blur(2px);
+  z-index:105;
+  opacity:0; transition: opacity .18s ease;
+}
+.nav-backdrop.show{ opacity:1; }
+
+.nav-drawer{
+  position:fixed; top:0; right:0; bottom:0; width:min(86vw, 360px);
+  background: radial-gradient(800px 400px at 70% 0%, #141416 0%, #0e0e10 70%);
+  border-left:1px solid var(--line);
+  box-shadow: -30px 0 80px rgba(0,0,0,.45);
+  z-index:110;
+  transform: translateX(100%);
+  transition: transform .22s ease;
+  display:flex; flex-direction:column; padding:80px 18px 18px;
+}
+.nav-drawer.open{ transform: translateX(0); }
+
+.nav-drawer ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+.nav-drawer a{
+  display:block; padding:12px 14px; border-radius:12px; text-decoration:none;
+  color:var(--ink); background:#111215; border:1px solid var(--line);
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+}
+.nav-drawer li.divider{ margin:4px 0 2px; height:1px; background:var(--line); border-radius:1px; }
+
+/* Stagger in menu items */
+.nav-drawer.open li{ animation: menu-in .25s ease both; }
+.nav-drawer.open li:nth-child(1){ animation-delay: .02s; }
+.nav-drawer.open li:nth-child(2){ animation-delay: .05s; }
+.nav-drawer.open li:nth-child(3){ animation-delay: .08s; }
+.nav-drawer.open li:nth-child(5){ animation-delay: .11s; }
+.nav-drawer.open li:nth-child(6){ animation-delay: .14s; }
+@keyframes menu-in{ from { transform: translateX(8px); opacity:.0; } to { transform:none; opacity:1; } }
+
+/* Reduce motion respect */
+@media (prefers-reduced-motion: reduce){
+  .nav-drawer, .nav-backdrop, .hamburger .bun, .hamburger .patty { transition:none !important; }
+  .nav-drawer.open li{ animation:none; }
+}
+
+/* Keep your main spacer */
+.main{ padding-top:92px; }
+
+/* Make category chips look like the rest (optional polish) */
+.chips .chip{
+  appearance:none; border:1px solid var(--line); background:#111215; color:var(--ink);
+  padding:8px 12px; border-radius:999px; cursor:pointer;
+  transition:transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+}
+.chips .chip:hover{ transform: translateY(-1px); border-color:#3a3a3e; }
+.chips .chip.active{ background:#15161a; border-color:#3a3a3e; box-shadow:0 6px 16px rgba(0,0,0,.25); }
+

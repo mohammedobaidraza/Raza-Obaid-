@@ -4,47 +4,30 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Obaid Raza — Portfolio</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <canvas id="bg"></canvas>
-<!-- HEADER -->
-<header class="site-header">
+
+  <header class="site-header">
   <a href="#top" class="brand brand-img" aria-label="Home">
-    <img src="assets/avatar.png" alt="Mohammed Obaid Raza" />
+    <img src="assets/avatar.png.png" alt="Mohammed Obaid Raza" />
   </a>
 
-  <!-- Desktop inline nav -->
-  <nav class="nav-desktop">
+  <button class="nav-toggle" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
+    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+  </button>
+
+  <nav id="primary-nav" class="nav">
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
     <a class="btn-code" href="https://drive.google.com/file/d/1qHZSid_jdSTqHA6IjOPuhIbrnhJQ4Bwf/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
     <a class="btn-code" href="https://linktr.ee/mohammedobaidraza" target="_blank" rel="noopener">Linktree</a>
   </nav>
-
-  <!-- Mobile hamburger -->
-  <button class="hamburger" aria-label="Open menu" aria-controls="primary-drawer" aria-expanded="false">
-    <span class="bun top"></span>
-    <span class="patty"></span>
-    <span class="bun bottom"></span>
-  </button>
 </header>
-
-<!-- Drawer + Backdrop (mobile) -->
-<div class="nav-backdrop" data-close-drawer hidden></div>
-<nav id="primary-drawer" class="nav-drawer" aria-hidden="true">
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li class="divider"></li>
-    <li><a class="btn-code" href="https://drive.google.com/file/d/1qHZSid_jdSTqHA6IjOPuhIbrnhJQ4Bwf/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
-    <li><a class="btn-code" href="https://linktr.ee/mohammedobaidraza" target="_blank" rel="noopener">Linktree</a></li>
-  </ul>
-</nav>
-
 
   <main id="top" class="main">
     <section class="hero">
@@ -86,6 +69,7 @@
       </div>
     </section>
 
+    <!-- Product-style Projects -->
     <section id="projects" class="section projects">
       <div class="projects-header">
         <div>
@@ -104,12 +88,15 @@
           </div>
         </div>
       </div>
+
       <div id="projectsGrid" class="cards"></div>
     </section>
 
     <section id="contact" class="section contact">
       <h2>Contact</h2>
       <p>Open to roles and collaborations. Let’s talk.</p>
+
+      <!-- one-row buttons (wrap on small screens) -->
       <div class="links one-row">
         <a class="btn-code" href="mailto:mohammedobaidraza@gmail.com">Email Me</a>
         <a class="btn-code" href="https://drive.google.com/uc?export=download&id=1qHZSid_jdSTqHA6IjOPuhIbrnhJQ4Bwf" target="_blank" rel="noreferrer">Download Resume</a>
@@ -122,6 +109,7 @@
 
   <footer class="site-footer">© <span id="year"></span> Mohammed Obaid Raza</footer>
 
+  <!-- Three.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
   <script src="main.js"></script>
   <script src="projects.js"></script>

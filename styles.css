@@ -82,43 +82,93 @@ body.nav-open{ overflow: hidden; }
 
 /* Hamburger button */
 .nav-toggle{
-  display: none; /* shown under 860px */
-  width: 42px; height: 42px; margin-left: auto;
-  border: 1px solid var(--line); background: #111215; border-radius: 10px;
-  align-items: center; justify-content: center;
-  position: relative; z-index: 110;
+  display:none; /* shown under 860px */
+  width:42px; height:42px; margin-left:auto;
+  border:1px solid var(--line); background:#111215; border-radius:10px;
+  align-items:center; justify-content:center;
+  position:relative; z-index:110;
 }
 .nav-toggle .bar{
-  display: block; width: 22px; height: 2px; background: var(--ink);
-  margin: 3px 0; transition: transform .18s ease, opacity .18s ease;
+  display:block; width:22px; height:2px; background:var(--ink);
+  margin:3px 0; transition:transform .18s ease, opacity .18s ease;
 }
-.nav-toggle.is-open .bar:nth-child(1){ transform: translateY(5px) rotate(45deg); }
-.nav-toggle.is-open .bar:nth-child(2){ opacity: 0; }
-.nav-toggle.is-open .bar:nth-child(3){ transform: translateY(-5px) rotate(-45deg); }
+.nav-toggle.is-open .bar:nth-child(1){ transform:translateY(5px) rotate(45deg); }
+.nav-toggle.is-open .bar:nth-child(2){ opacity:0; }
+.nav-toggle.is-open .bar:nth-child(3){ transform:translateY(-5px) rotate(-45deg); }
 
 /* Mobile panel */
-@media (max-width: 860px){
-  .nav-toggle{ display: flex; }
+@media (max-width:860px){
+  .nav-toggle{ display:flex; }
 
   .nav{
-    position: fixed; left: 0; right: 0; top: 64px;
+    position:fixed; left:0; right:0; top:64px;
     background: radial-gradient(800px 400px at 70% 0%, #141416 0%, #0e0e10 70%);
-    border-top: 1px solid var(--line);
-    max-height: 0; overflow: hidden; pointer-events: none;
-    transition: max-height .25s ease;
-    display: block; padding: 0 16px 16px;
-    z-index: 105;
+    border-top:1px solid var(--line);
+    max-height:0; overflow:hidden; pointer-events:none;
+    transition:max-height .25s ease;
+    display:block; padding:0 16px 16px; z-index:105;
   }
-  .nav.open{ max-height: 70vh; pointer-events: auto; }
+  .nav.open{ max-height:70vh; pointer-events:auto; }
+  .nav a, .nav .btn, .nav .btn-code{ display:block; margin:12px 0; width:100%; text-align:center; }
+}
+
+/* Body lock when open */
+body.nav-open{ overflow:hidden; }
+/* ===== Checkbox controller ===== */
+.nav-check{
+  position:absolute; inset:auto; opacity:0; pointer-events:none;
+}
+
+/* ===== Hamburger button ===== */
+.nav-toggle{
+  display:none; /* shown under 860px */
+  width:42px; height:42px; margin-left:auto;
+  border:1px solid var(--line); background:#111215; border-radius:10px;
+  align-items:center; justify-content:center;
+  position:relative; z-index:110; cursor:pointer;
+}
+.nav-toggle .bar{
+  display:block; width:22px; height:2px; background:var(--ink);
+  margin:3px 0; transition:transform .18s ease, opacity .18s ease;
+}
+
+/* Turn into an “X” when checked */
+#nav-check:checked + .nav-toggle .bar:nth-child(1){ transform:translateY(5px) rotate(45deg); }
+#nav-check:checked + .nav-toggle .bar:nth-child(2){ opacity:0; }
+#nav-check:checked + .nav-toggle .bar:nth-child(3){ transform:translateY(-5px) rotate(-45deg); }
+
+/* ===== Mobile panel ===== */
+@media (max-width:860px){
+  .nav-toggle{ display:flex; }
+
+  .nav{
+    position:fixed; left:0; right:0; top:64px;
+    background: radial-gradient(800px 400px at 70% 0%, #141416 0%, #0e0e10 70%);
+    border-top:1px solid var(--line);
+    max-height:0; overflow:hidden; pointer-events:none;
+    transition:max-height .25s ease;
+    display:block; padding:0 16px 16px; z-index:105;
+  }
+
+  /* Open the drawer when checkbox is checked */
+  #nav-check:checked ~ .nav{
+    max-height:70vh; pointer-events:auto;
+  }
+
+  /* Stack links */
   .nav a, .nav .btn, .nav .btn-code{
-    display: block; margin: 12px 0; width: 100%; text-align: center;
+    display:block; margin:12px 0; width:100%; text-align:center;
   }
 }
 
-/* Desktop guard */
-@media (min-width: 861px){
-  .nav{ display: flex; align-items: center; }
+/* Lock body scroll when open (CSS-only, modern browsers) */
+body:has(#nav-check:checked){ overflow:hidden; }
+
+/* Desktop layout keeps your existing nav */
+@media (min-width:861px){
+  .nav{ display:flex; align-items:center; max-height:none !important; pointer-events:auto; position:static; padding:0; background:transparent; border-top:0; }
 }
+
 
 /* =========================================================
    BUTTONS (unified dark pill)

@@ -66,7 +66,7 @@ function animate(){
 init();
 
 /* -------- Mobile nav toggle (robust) -------- */
-/* -------- Mobile nav toggle (accessible & robust) -------- */
+/* -------- Mobile nav toggle (accessible & robust) --------
 (function setupNavToggle(){
   const toggle = document.querySelector('.nav-toggle');
   const nav    = document.getElementById('primary-nav');
@@ -121,3 +121,56 @@ init();
   const handleMQ = () => { if (mq.matches) closeMenu(); };
   mq.addEventListener ? mq.addEventListener('change', handleMQ) : mq.addListener(handleMQ);
 })();
+/* Mobile nav toggle (accessible & robust) 
+(function setupNavToggle(){
+  const toggle = document.querySelector('.nav-toggle');
+  const nav    = document.getElementById('primary-nav');
+  if (!toggle || !nav) return;
+
+  const openMenu = () => {
+    nav.classList.add('open');
+    toggle.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    nav.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('nav-open');
+  };
+
+  const closeMenu = () => {
+    nav.classList.remove('open');
+    toggle.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    nav.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('nav-open');
+  };
+
+  const isOpen = () => nav.classList.contains('open');
+  const onToggle = (e) => { e.preventDefault(); isOpen() ? closeMenu() : openMenu(); };
+
+  // Toggle via button
+  toggle.addEventListener('click', onToggle, { passive: false });
+  toggle.addEventListener('touchstart', onToggle, { passive: true });
+
+  // Close on any nav link click
+  nav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeMenu);
+    a.addEventListener('touchstart', closeMenu, { passive: true });
+  });
+
+  // Click outside to close
+  document.addEventListener('click', (e) => {
+    if (!isOpen()) return;
+    const withinHeader = e.target.closest('.site-header');
+    const withinNav    = e.target.closest('#primary-nav');
+    if (!withinHeader && !withinNav) closeMenu();
+  });
+
+  // Esc to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen()) closeMenu();
+  });
+
+  // Reset when switching to desktop
+  const mq = window.matchMedia('(min-width: 861px)');
+  const handleMQ = () => { if (mq.matches) closeMenu(); };
+  mq.addEventListener ? mq.addEventListener('change', handleMQ) : mq.addListener(handleMQ);
+})();*/
